@@ -1,9 +1,12 @@
 use crate::bet_size::*;
 use crate::card::*;
 use crate::mutex_like::*;
+use serde::Serialize;
+
 
 #[cfg(feature = "bincode")]
 use bincode::{Decode, Encode};
+
 
 pub(crate) const PLAYER_OOP: u8 = 0;
 pub(crate) const PLAYER_IP: u8 = 1;
@@ -14,7 +17,7 @@ pub(crate) const PLAYER_TERMINAL_FLAG: u8 = 8;
 pub(crate) const PLAYER_FOLD_FLAG: u8 = 24;
 
 /// Available actions of the postflop game.
-#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 #[cfg_attr(feature = "bincode", derive(Decode, Encode))]
 pub enum Action {
     /// (Default value)
